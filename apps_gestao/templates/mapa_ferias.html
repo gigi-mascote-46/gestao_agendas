@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Mapa de Gestão: Turnos e Férias</h2>
+        <span class="badge bg-secondary p-2">{{ nome_mes }} / {{ ano }}</span>
+    </div>
+
+    <div class="card p-3 mb-4 shadow-sm bg-light border-0">
+        <form method="post" action="{% url 'atribuir_turno' %}" class="row g-3 align-items-end">
+            {% csrf_token %}
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Funcionário</label>
+                <select name="funcionario" class="form-select">
+                    {% for item in mapa %}
+                        <option value="{{ item.pk }}">{{ item.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold">A partir de:</label>
+                <input type="date" name="data_inicio" class="form-control" required>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Turno</label>
+                <select name="tipo" class="form-select">
+                    <option value="MANHA">Manhã (08-16h)</option>
+                    <option value="TARDE">Tarde (16-00h)</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-dark w-100">Atribuir Semana</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="table-responsive shadow-sm">
+        <table class="table table-bordered text-center align-middle bg-white">
+            <thead class="table-dark">
+                <tr>
+                    <th style="min-width: 180px;" class="text-start ps-3">Funcionário</th>
+                    {% for dia in dias_do_mes %}
+                        <th style="width: 35px; font-size: 0.8rem;">{{ dia }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for funcionario in mapa %}
+                <tr>
+                    <td class="text-start ps-3 fw-bold">{{ funcionario.nome }}</td>
+                    {% for dia in funcionario.dias %}
+                        <td class="{{ dia.classe }}" style="height: 40px; font-weight: bold;">
+                            {{ dia.texto }}
+                        </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="card mt-3 p-2 border-0 bg-transparent">
+        <div class="d-flex gap-4 justify-content-center">
+            <div class="d-flex align-items-center"><span class="badge bg-primary me-2">M</span> Manhã</div>
+            <div class="d-flex align-items-center"><span class="badge bg-info text-dark me-2">T</span> Tarde</div>
+            <div class="d-flex align-items-center"><span class="badge bg-success me-2">F</span> Férias/Ausente</div>
+            <div class="d-flex align-items-center"><span class="badge bg-light border text-dark me-2">-</span> Por definir</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,280 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES BASE E VARIÁVEIS
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+:root {
+    /* Cores de Fundo */
+    --bg-main: #020617;
+    --bg-card: rgba(30, 41, 59, 0.7);
+    --bg-input: rgba(15, 23, 42, 0.6);
+    
+    /* Cores de Texto */
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    
+    /* Cores Neon */
+    --neon-cyan: #00f7ff;
+    --neon-green: #39ff14;
+    --neon-purple: #bd00ff;
+    --neon-danger: #ff3333;
+    --neon-warning: #ffc800;
+    
+    /* Estética */
+    --border-radius: 24px;
+    --glass-blur: blur(12px);
+}
+
+body {
+    background-color: var(--bg-main);
+    background-image: radial-gradient(circle at top center, rgba(0, 247, 255, 0.1), transparent 40%);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. TIPOGRAFIA
+   ========================================================================== */
+h1, h2, h3, h4, h5 {
+    color: white;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+}
+
+.text-muted { color: var(--text-muted) !important; }
+hr { border-color: rgba(255, 255, 255, 0.1); }
+
+/* ==========================================================================
+   3. COMPONENTES GLASSMORPHISM (CARTÕES)
+   ========================================================================== */
+.card, .login-card {
+    background-color: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.15);
+    transform: translateY(-3px);
+}
+
+/* Variações de Borda para Alertas */
+.border-danger.card { border-color: rgba(255, 51, 51, 0.4) !important; }
+.border-warning.card { border-color: rgba(255, 200, 0, 0.4) !important; }
+
+/* ==========================================================================
+   4. NAVEGAÇÃO (NAVBAR & DROPDOWNS)
+   ========================================================================== */
+.navbar {
+    background-color: rgba(2, 6, 23, 0.8) !important;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: 900;
+    color: white !important;
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.nav-link {
+    color: var(--text-muted) !important;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--neon-cyan) !important;
+    background-color: rgba(0, 247, 255, 0.1);
+}
+
+.dropdown-menu {
+    background-color: var(--bg-main);
+    border: 1px solid var(--neon-cyan);
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0, 247, 255, 0.2);
+}
+
+.dropdown-item {
+    color: var(--text-main);
+    transition: 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: var(--neon-cyan);
+    color: black;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   5. BOTÕES E BADGES
+   ========================================================================== */
+.btn {
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-primary {
+    background: transparent;
+    border: 2px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+}
+
+.btn-primary:hover {
+    background: var(--neon-cyan);
+    color: black;
+    box-shadow: 0 0 20px var(--neon-cyan);
+    transform: scale(1.03);
+}
+
+.btn-success {
+    background: transparent;
+    border: 2px solid var(--neon-green);
+    color: var(--neon-green);
+}
+
+.btn-success:hover {
+    background: var(--neon-green);
+    color: black;
+    box-shadow: 0 0 20px var(--neon-green);
+}
+
+.badge {
+    border-radius: 50px;
+    padding: 0.5em 1em;
+    font-weight: 700;
+    border: 1px solid transparent;
+}
+
+.bg-success { background: rgba(57, 255, 20, 0.1) !important; color: var(--neon-green) !important; border: 1px solid var(--neon-green) !important; }
+.bg-danger { background: rgba(255, 51, 51, 0.1) !important; color: var(--neon-danger) !important; border: 1px solid var(--neon-danger) !important; }
+.bg-warning { background: rgba(255, 200, 0, 0.1) !important; color: var(--neon-warning) !important; border: 1px solid var(--neon-warning) !important; }
+
+/* ==========================================================================
+   6. FORMULÁRIOS E INPUT GROUPS (CORREÇÃO DE ALINHAMENTO)
+   ========================================================================== */
+.input-group {
+    display: flex !important;
+    align-items: stretch !important; /* Força altura igual */
+    flex-wrap: nowrap !important;
+}
+
+.form-control, .form-select {
+    background-color: var(--bg-input) !important;
+    border: 1px solid rgba(0, 247, 255, 0.2) !important;
+    color: white !important;
+    border-radius: 16px;
+    padding: 0.8rem 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Quando dentro de um Input Group */
+.input-group .form-control, .input-group .form-select {
+    border-left: none !important;
+    border-radius: 0 16px 16px 0 !important;
+    flex: 1 1 auto;
+    width: 1% !important;
+}
+
+.input-group-text {
+    background: rgba(0, 247, 255, 0.05) !important;
+    border: 1px solid rgba(0, 247, 255, 0.2) !important;
+    border-right: none !important;
+    border-radius: 16px 0 0 16px !important;
+    color: var(--neon-cyan);
+    min-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Foco Futurista */
+.form-control:focus, .form-select:focus {
+    background-color: rgba(0, 247, 255, 0.05) !important;
+    border-color: var(--neon-cyan) !important;
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.3) !important;
+    outline: none;
+}
+
+/* Corrigir Foco no Grupo Inteiro */
+.input-group:focus-within .input-group-text {
+    border-color: var(--neon-cyan) !important;
+}
+
+::placeholder {
+    color: rgba(0, 247, 255, 0.3) !important;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   7. PÁGINAS DE AUTENTICAÇÃO (LOGIN / REGISTO)
+   ========================================================================== */
+.login-card {
+    padding: 3rem;
+    max-width: 480px;
+    width: 100%;
+    margin: auto;
+}
+
+.login-logo {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 15px rgba(0, 247, 255, 0.5));
+    animation: pulse-glow 3s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(0, 247, 255, 0.4)); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 20px rgba(0, 247, 255, 0.7)); transform: scale(1.02); }
+}
+
+.helptext {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    opacity: 0.8;
+    margin-top: 5px;
+    font-family: 'Courier New', monospace;
+}
+
+/* ==========================================================================
+   8. TABELAS E MAPA
+   ========================================================================== */
+.table { color: var(--text-main); vertical-align: middle; }
+
+.table thead th {
+    background-color: rgba(0, 247, 255, 0.05);
+    border-color: rgba(0, 247, 255, 0.2);
+    color: var(--neon-cyan);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.table td { border-color: rgba(255, 255, 255, 0.05); }
+
+/* ==========================================================================
+   9. ANIMAÇÕES
+   ========================================================================== */
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}

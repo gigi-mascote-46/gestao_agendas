@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 shadow p-4 bg-white rounded">
+            <h2 class="mb-4">Marcar Férias ou Ausência</h2>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label>Data de Início:</label>
+                    {{ form.data_inicio }}
+                </div>
+                <div class="mb-3">
+                    <label>Data de Fim:</label>
+                    {{ form.data_fim }}
+                </div>
+                <div class="mb-3">
+                    <label>Motivo:</label>
+                    {{ form.tipo }}
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100">Verificar Disponibilidade</button>
+                <a href="{% url 'dashboard' %}" class="btn btn-link w-100 mt-2">Voltar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
