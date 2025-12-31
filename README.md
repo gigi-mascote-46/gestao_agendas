@@ -83,12 +83,4 @@ A aplicação segue o padrão **MVT (Model-View-Template)** do Django:
 **👩‍💻 Desenvolvido por**
 **Ângela Peixoto Tech Educator & Developer**
 
----
 
-### 💡 Notas importantes para ti:
-
-1.  **Caminho do Logo:** No código acima, usei `static/css/images/logo.png`. Se mais tarde moveres a pasta `images` para a raiz de `static`, lembra-te de atualizar o link no README para `static/images/logo.png`.
-2.  **Badges:** Incluí "badges" coloridos para as tecnologias. Eles dão um aspeto muito profissional ao topo do repositório.
-3.  **Links:** Não te esqueças de substituir `TEU_UTILIZADOR` e `TEU_LINK` pelos teus links reais.
-
-Este README está pronto para ser o teu cartão de visita no GitHub! Estás satisfeita com a estrutura ou queres adicionar mais algum detalhe técnico?
